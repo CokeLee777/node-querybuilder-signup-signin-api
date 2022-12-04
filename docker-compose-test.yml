@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  database-test:
+    container_name: database-test
+    image: "mysql"
+    volumes:
+      - database-test-data:/var/lib/mysql
+    env_file:
+      - ./env/test.env
+    ports:
+      - "3306:3306"
+
+volumes:
+  database-test-data:

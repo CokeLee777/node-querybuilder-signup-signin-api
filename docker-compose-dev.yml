@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  database-dev:
+    container_name: database-dev
+    image: "mysql"
+    volumes:
+      - database-dev-data:/var/lib/mysql
+    env_file:
+      - ./env/dev.env
+    ports:
+      - "3306:3306"
+    networks:
+      - network-dev
+  backend-dev:
+    container_name: backend-dev
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile-dev
+    volumes:
+      - /Volumes/T7/NodejsWorkspace/library/login:/app
+    env_file:
+      - ./env/dev.env
+    ports:
+      - "3001:3001"
+    expose:
+      - 3001
+    depends_on:
+      - database-dev
+    networks:
+      - network-dev
+
+volumes:
+  database-dev-data:
+
+networks:
+  network-dev:
+    driver: bridge
