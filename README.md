@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> About sign-up and sign-in by using node.js
+> About Authorization & sign-up and sign-in by using node.js
 
 ## Prerequisites
 
@@ -21,8 +21,16 @@ npm install
 
 ## Usage
 
+- Raw
+
 ```sh
 npm run dev && npm run prod
+```
+
+- Docker
+
+```sh
+docker-compose -f docker-compose-{PROFILE_NAME}.yml up
 ```
 
 ## Run tests
