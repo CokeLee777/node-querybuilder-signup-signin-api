@@ -3,9 +3,15 @@ import {appConfig} from "../config/app.config";
 import {DuplicatedUserError, InCorrectPasswordError, NotEnoughRequestDataError, UserNotFoundError} from "./users.error";
 import {SignUpRequest} from "./dto/users.signup.dto";
 import {SignInRequest, SignInResponse} from "./dto/users.signin.dto";
+import {auth} from "../middleware/auth";
 
 const router = express.Router();
 const userService = appConfig.UserService;
+
+router.get("/profiles", auth, (request: Request, response: Response, next: NextFunction) => {
+    const decodedToken = response.locals.token;
+    response.status(200).json({message: `Welcome ${decodedToken.username}`})
+});
 
 router.post("/sign-up", (request: Request, response: Response, next: NextFunction) => {
     const requestBody = request.body;

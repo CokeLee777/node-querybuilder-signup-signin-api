@@ -27,7 +27,7 @@ export class UsersService {
         //회원 중복 검증
         const identifier = signUpRequest.identifier;
         if(await this.userModel.existsByIdentifier(identifier)){
-            throw new DuplicatedUserError(400, "아이디가 중복됩니다");
+            throw new DuplicatedUserError(409, "아이디가 중복됩니다");
         }
         //회원가입
         await this.userModel.save(signUpRequest.toUser());
