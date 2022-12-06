@@ -1,12 +1,15 @@
 import * as path from "path";
 import dotenv from "dotenv"; //It must be imported before express
-dotenv.config({
-    path: path.resolve(__dirname, `env/${process.env.NODE_ENV}.env`)
-})
 import express, {NextFunction, Request, Response} from "express";
 import morgan from "morgan";
 
 import usersController from "./users/users.controller";
+import swaggerUi from "swagger-ui-express";
+import swaggerFile from "./swagger/swagger-output.json";
+
+dotenv.config({
+    path: path.resolve(__dirname, `env/${process.env.NODE_ENV}.env`)
+})
 
 const app = express();
 
@@ -20,6 +23,7 @@ if(process.env.NODE_ENV === "prod"){
 }
 
 app.use("/api/users", usersController);
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     return response.status(404).send("Page Not Found!");

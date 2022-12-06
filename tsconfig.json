@@ -6,6 +6,7 @@
     "module": "commonjs",
     /* Allows us to compile ES6 modules to CommonJS modules */
     "esModuleInterop": true,
+    "moduleResolution": "node",
     /* Ensure that casing is correct in imports. */
     "forceConsistentCasingInFileNames": true,
     /* 엄격한 타입 체크 on */
