@@ -9,7 +9,7 @@
     "test": "cross-env NODE_ENV=test SERVER_PORT=3002 jest --detectOpenHandles --forceExit",
     "api-docs": "node ./swagger/swagger.config.js"
   },
-  "author": "",
+  "author": "CokeLee777",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
